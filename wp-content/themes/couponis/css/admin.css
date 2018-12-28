@@ -1,0 +1,46 @@
+.cd-import{
+	width: 100%;
+	min-height: 300px;
+}
+
+#setting-error-tgmpa{
+	display: block;
+}
+
+body .cmb-file-holder.type-img img{
+	width: auto;
+	vertical-align: middle;
+}
+
+td.store_image img{
+	max-width: 100%;
+	height: auto;
+}
+
+#coupon_code,
+#coupon_url,
+#coupon_printable{
+	display: none;
+}
+
+.wpallimport-couponis_addoncoupon_printable_distinct_xpath,
+.wpallimport-couponis_addoncoupon_featured_distinct_xpath,
+.wpallimport-couponis_addonstore_logo_distinct_xpath{
+	display: none;
+}
+
+.store-marker-wrap{
+	display: flex;
+	align-items: center;
+}
+
+.store-marker-wrap input{
+	width: calc(100% - 30px);
+}
+
+.store-marker-wrap a{
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}

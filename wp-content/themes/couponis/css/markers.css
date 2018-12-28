@@ -1,0 +1,145 @@
+/* MARKERS */
+.infoBox{
+	background: #ffffff;
+	border-radius: 2px;
+	font-family: "Roboto", sans-serif;
+	color: #3e3e3e;
+	font-size: 14px;
+}
+
+#poststuff .infoBox h1, 
+#poststuff .infoBox h2, 
+#poststuff .infoBox h3, 
+#poststuff .infoBox h4, 
+#poststuff .infoBox h5, 
+#poststuff .infoBox h6{
+	padding: 0px;
+	margin: 10px 0px;
+	line-height: 1.4;
+	color: #202020;
+	font-weight: 700;
+	font-family: "Roboto", sans-serif;
+}
+
+#poststuff .infoBox h1 {
+    font-size: 38px;
+}
+
+#poststuff .infoBox h2 {
+	font-size: 32px;
+}
+
+#poststuff .infoBox h3 {
+	font-size: 26px;
+}
+
+#poststuff .infoBox h4 {
+    font-size: 20px;
+}
+
+#poststuff .infoBox h5 {
+	font-size: 18px;
+}
+
+#poststuff .infoBox h6 {
+    font-size: 12px;
+}
+
+.infobox-image{
+	display: block;
+	border-radius: 2px 2px 0px 0px;
+	overflow: hidden;
+}
+
+.infobox-image img{
+	display: block;
+}
+
+.infobox-content{
+	padding: 15px;
+}
+
+.infobox-content h5,
+.infobox-content p{
+	margin: 0px;
+}
+
+.infobox-content a{
+	color: #202020;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	display: block;
+}
+
+.infobox-date{
+	position: relative;
+	padding-left: 20px;
+}
+
+.infobox-date:before{
+	position: absolute;
+	content: ' ';
+	width: 10px;
+	height: 2px;
+	border-radius: 1px;
+	top: 50%;
+	left: 0px;
+	background: #ddd;
+}
+
+.infoBox .fa{
+	position: absolute;
+	right: 2px;
+	top: 2px;
+	color: #aaa;
+	font-size: 10px;
+	background: #ffffff;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	line-height: 20px;
+	border-radius: 2px;
+	z-index: 5;
+}
+
+.infoBox .fa:hover{
+	color: #202020;
+	cursor: pointer;
+}
+
+.infoBox p{
+	font-size: 85%;
+}
+
+.infobox-arrow-down-wrap{
+	position: absolute;
+	left: calc(50% - 50px);
+	bottom: -15px;
+	z-index: -1;
+	transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+}
+
+.infobox-arrow-down{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 20px;
+    background: #fff;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    border-radius: 3px;
+}
+.infobox-arrow-down-cover{
+	position: absolute;
+	height: 100px;
+	width: 40px;
+	overflow: hidden;
+}
+
+/* END MARKERS */
