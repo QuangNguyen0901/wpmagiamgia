@@ -2,6 +2,10 @@
 /** Enable W3 Total Cache */
 define('WP_CACHE', true); // Added by W3 Total Cache
 
+/**for debug bar plugin */
+define( 'WP_DEBUG', true );
+define( 'SAVEQUERIES', true );
+
 /**
  * The base configuration for WordPress
  *
