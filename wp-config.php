@@ -33,7 +33,7 @@ define('DB_NAME', 'wpmgg');
 define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'Mysql@123456');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
