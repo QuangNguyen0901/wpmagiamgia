@@ -1,5 +1,5 @@
 <?php
-/** Enable W3 Total Cache */
+/** Enable W3 Total Cache xxx */
 define('WP_CACHE', true); // Added by W3 Total Cache
 
 /**for debug bar plugin */
