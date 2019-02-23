@@ -88,7 +88,7 @@ if(!defined('ABSPATH')) {
 			<label class="screen-reader-text" for="typeselector"><?php _e('Search extensions by', 'kingcomposer'); ?>:</label>
 			<label>
 				<span class="screen-reader-text"><?php _e('Search Extensions', 'kingcomposer'); ?></span>
-				<input type="search" name="q" class="wp-filter-search" placeholder="<?php _e('Search Extensions', 'kingcomposer'); ?>" value="<?php echo isset($_GET['q']) ? $_GET['q'] : ''; ?>" aria-describedby="live-search-desc">
+				<input type="search" name="q" class="wp-filter-search" placeholder="<?php _e('Search Extensions', 'kingcomposer'); ?>" value="<?php echo isset($_GET['q']) ? esc_html($_GET['q']) : ''; ?>" aria-describedby="live-search-desc">
 			</label>
 			<input type="submit" id="search-submit" class="button hide-if-js" value="<?php _e('Search Extensions', 'kingcomposer'); ?>">	
 		</form>

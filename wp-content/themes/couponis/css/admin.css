@@ -44,3 +44,11 @@ td.store_image img{
 	line-height: 30px;
 	text-align: center;
 }
+
+body .cmb-file-wrap,
+body .cmb-file-holder,
+body .cmb-file-holder img,
+body .cmb-file-wrap-placeholder{
+	width: 150px!important;
+	height: 150px!important;
+}

@@ -15,11 +15,12 @@ if(!defined('ABSPATH')) {
 add_thickbox();
 
 $url = admin_url('admin.php?page=kc-extensions&tab=store');
-$query = isset($_GET['q']) && !empty($_GET['q']) ? strtolower($_GET['q']) : '';
-$paged = isset($_GET['paged']) && !empty($_GET['paged']) ? $_GET['paged'] : 1;
+$query = isset($_GET['q']) && !empty($_GET['q']) ? esc_html(strtolower($_GET['q'])) : '';
+$paged = isset($_GET['paged']) && !empty($_GET['paged']) ? esc_attr($_GET['paged']) : 1;
 ?>
 <div class="wp-list-table widefat extension-install">
 <?php
+	
 if (count($items) > 0) {
 	for ($i=0; $i < count($items); $i++) {
 		

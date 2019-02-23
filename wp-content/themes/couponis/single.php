@@ -67,20 +67,19 @@ $blog_single_sidebar = couponis_get_option( 'blog_single_sidebar' );
 
 						<?php if( !empty( $post_pages ) ): ?>	
 							<div class="pagination">
-								<?php echo $post_pages; ?>
+								<?php echo wp_kses_post( $post_pages ); ?>
 							</div>
 						<?php endif; ?>
 					</div>
 				</div>
 
 				<?php
-				$tags = couponis_the_tags();
-				if( !empty( $tags ) ):
+				if( has_tag() ):
 				?>
 					<div class="white-block">
 						<div class="white-block-single-content">
 							<div class="tag-section">
-								<i class="icon-tag"></i> <?php echo  $tags; ?>
+								<i class="icon-tag"></i> <?php echo  couponis_the_tags(); ?>
 							</div>
 						</div>
 					</div>

@@ -364,7 +364,7 @@ class kc_front{
 			
 			foreach( $strs as $str ){
 				$str = explode( ':', $str );
-				if( !empty($str[0]) )
+				if( !empty($str[0]) && isset($str[1]) && !empty($str[1]) )
 					$atts['_css'][] = '`'.$str[0].'`:`'.$str[1].'`';	
 			}
 			
@@ -1056,6 +1056,8 @@ class kc_front{
 
 		$this->allows = is_singular( $content_types );
 		
+		$this->allows = apply_filters('kc_allows', $this->allows);
+		
 		return $this->allows;
 
 	}
@@ -1090,8 +1092,9 @@ class kc_front{
 	private function render_dynamic_css(){
 
 		global $post, $kc;
-
-		$post_data = get_post_meta ($post->ID , 'kc_data', true);
+		
+		$post_id = apply_filters('kc_get_dynamic_css', $post->ID);
+		$post_data = get_post_meta ($post_id , 'kc_data', true);
 		$settings = $kc->settings();
 
 		if (!empty($post_data) && !empty($post_data['css']))

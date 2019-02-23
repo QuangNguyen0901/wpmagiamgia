@@ -1,4 +1,5 @@
 jQuery(document).ready(function($){
+	"use strict";
 	/* handle image */
 	function handle_images( frameArgs, callback ){
 		var SM_Frame = wp.media( frameArgs );
@@ -29,7 +30,7 @@ jQuery(document).ready(function($){
 		};
 
 		handle_images( frameArgs, function( selection ){
-			model = selection.first();
+			var model = selection.first();
 			$this.parent().find('input').val( model.id );
 			var img = model.attributes.url;
 			var ext = img.substring(img.lastIndexOf('.'));

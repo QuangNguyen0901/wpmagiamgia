@@ -607,6 +607,7 @@ class KC_Extensions_List extends WP_List_Table
 	 * @param array $item
 	 */
 	public function single_row( $item ) {
+		
 		global $status, $page, $s, $totals;
 		
 		$idc = rand(334,4343);
@@ -623,7 +624,7 @@ class KC_Extensions_List extends WP_List_Table
 		?>" data-extension="<?php echo $slug; ?>">
 			<th scope="row" class="check-column">
 				<label class="screen-reader-text" for="checkbox_<?php echo $idc; ?>">
-					Select <?php echo $name; ?>
+					<?php _e('Select', 'kingcomposer'); ?> <?php echo $name; ?>
 				</label>
 				<input type="checkbox" name="checked[]" value="<?php echo $slug; ?>" id="checkbox_<?php echo $idc; ?>">
 			</th>

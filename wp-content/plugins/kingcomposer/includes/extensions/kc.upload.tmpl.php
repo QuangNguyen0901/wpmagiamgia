@@ -13,13 +13,13 @@ if(!defined('ABSPATH')) {
 }
 
 ?>
-<h1><?php _e('Installing Extension from uploaded file', 'kingcomposer'); ?>: <?php echo $upload[0]; ?></h1>
+<h1><?php _e('Installing Extension from uploaded file', 'kingcomposer'); ?>: <?php echo esc_html($upload[0]); ?></h1>
 <?php 
 	if (count($errors) > 0) {
 	?>
 		<div class="kc-notice error" style="margin-top:30px;">
 		<?php foreach ($errors as $error) {
-			echo '<p>Error: '.$error.'</p>';
+			echo '<p>Error: '.esc_html($error).'</p>';
 		} ?>
 		</div>
 		<p>

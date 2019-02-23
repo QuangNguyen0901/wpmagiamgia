@@ -1,4 +1,5 @@
 jQuery(document).ready(function($){
+	"use strict";
 	$(document).on( 'click', '.google-api-dismiss .notice-dismiss', function(){
 		$.ajax({
 			url: ajaxurl,
@@ -6,87 +7,6 @@ jQuery(document).ready(function($){
 				action: 'google_api_dismiss'
 			}
 		})
-	});
-
-	/* upgrading times of coupons */
-	function upgradeCompleted( action, $response_div ){
-		$.ajax({
-			url: ajaxurl,
-			data: {
-				action: action
-			},
-			success: function(){
-				if( $response_div ){
-					$response_div.append( '<br /><p>Upgrade completed</p>' );
-				}
-			}
-		});		
-	}
-
-	$(document).on( 'click', '.time-upgrade-dismiss .notice-dismiss', function(){
-		upgradeCompleted( 'couponis_time_upgrade_completed' );
-	});	
-
-	$(document).on( 'click', '.image-upgrade-dismiss .notice-dismiss', function(){
-		upgradeCompleted( 'couponis_image_upgrade_completed' );
-	});
-
-	$(document).on( 'click', '.image-upgrade-dismiss .notice-dismiss', function(){
-		upgradeCompleted( 'couponis_wpai_del_completed' );
-	});
-
-	function upgradeNextBatch( offset, total, action, $response_div, callback ){
-		$.ajax({
-			url: ajaxurl,
-			data: {
-				offset: offset,
-				action: action
-			},
-			method: 'POST',
-			dataType: 'json',
-			success: function( response ){
-				offset += response.upgraded;
-				$response_div.append( response.message );
-				if( offset < total && response.error === false ){
-					upgradeNextBatch( offset, total, action, $response_div, callback );
-				}
-				else{
-					if( callback ){
-						callback();
-					}
-				}
-			}
-		})
-	}
-
-	$(document).on( 'click', '.couponis-start-time-upgrade', function(){
-		var $response_div = $('.upgrade-results');
-		
-		$response_div.append( '<br /><p>Upgrading ( Do not close this window )...</p>' );
-		
-		upgradeNextBatch( 0, $(this).data('total'), $(this).data('action'), $response_div, function(){
-			upgradeCompleted( 'couponis_time_upgrade_completed', $response_div );
-		});
-	});
-
-	$(document).on( 'click', '.couponis-start-image-upgrade', function(){
-		var $response_div = $('.upgrade-image-results');
-
-		$response_div .append( '<br /><p>Deleting ( Do not close this window )...</p>' );
-		
-		upgradeNextBatch( 0, $(this).data('total'), $(this).data('action'), $response_div, function(){
-			upgradeCompleted( 'couponis_image_upgrade_completed', $response_div );
-		});
-	});
-
-	$(document).on( 'click', '.couponis-start-wpai-upgrade', function(){
-		var $response_div = $('.upgrade-wpai-results');
-
-		$response_div .append( '<br /><p>Deleting ( Do not close this window )...</p>' );
-		
-		upgradeNextBatch( 0, $(this).data('total'), $(this).data('action'), $response_div, function(){
-			upgradeCompleted( 'couponis_wpai_del_completed', $response_div );
-		});
 	});
 
 	function show_type_fields( type ){

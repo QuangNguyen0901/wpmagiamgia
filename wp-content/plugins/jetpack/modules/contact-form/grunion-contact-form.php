@@ -136,6 +136,8 @@ class Grunion_Contact_Form_Plugin {
 		) {
 			add_filter( 'widget_text', array( $this, 'widget_shortcode_hack' ), 5 );
 		}
+		
+		add_filter( 'jetpack_contact_form_is_spam', array( $this, 'is_spam_blacklist' ), 10, 2 );
 
 		// Akismet to the rescue
 		if ( defined( 'AKISMET_VERSION' ) || function_exists( 'akismet_http_post' ) ) {
@@ -246,36 +248,47 @@ class Grunion_Contact_Form_Plugin {
 
 		// Field render methods.
 		jetpack_register_block( 'field-text', array(
+			'parent'          => array( 'jetpack/contact-form' ),
 			'render_callback' => array( __CLASS__, 'gutenblock_render_field_text' ),
 		) );
 		jetpack_register_block( 'field-name', array(
+			'parent'          => array( 'jetpack/contact-form' ),
 			'render_callback' => array( __CLASS__, 'gutenblock_render_field_name' ),
 		) );
 		jetpack_register_block( 'field-email', array(
+			'parent'          => array( 'jetpack/contact-form' ),
 			'render_callback' => array( __CLASS__, 'gutenblock_render_field_email' ),
 		) );
 		jetpack_register_block( 'field-url', array(
+			'parent'          => array( 'jetpack/contact-form' ),
 			'render_callback' => array( __CLASS__, 'gutenblock_render_field_url' ),
 		) );
 		jetpack_register_block( 'field-date', array(
+			'parent'          => array( 'jetpack/contact-form' ),
 			'render_callback' => array( __CLASS__, 'gutenblock_render_field_date' ),
 		) );
 		jetpack_register_block( 'field-telephone', array(
+			'parent'          => array( 'jetpack/contact-form' ),
 			'render_callback' => array( __CLASS__, 'gutenblock_render_field_telephone' ),
 		) );
 		jetpack_register_block( 'field-textarea', array(
+			'parent'          => array( 'jetpack/contact-form' ),
 			'render_callback' => array( __CLASS__, 'gutenblock_render_field_textarea' ),
 		) );
 		jetpack_register_block( 'field-checkbox', array(
+			'parent'          => array( 'jetpack/contact-form' ),
 			'render_callback' => array( __CLASS__, 'gutenblock_render_field_checkbox' ),
 		) );
 		jetpack_register_block( 'field-checkbox-multiple', array(
+			'parent'          => array( 'jetpack/contact-form' ),
 			'render_callback' => array( __CLASS__, 'gutenblock_render_field_checkbox_multiple' ),
 		) );
 		jetpack_register_block( 'field-radio', array(
+			'parent'          => array( 'jetpack/contact-form' ),
 			'render_callback' => array( __CLASS__, 'gutenblock_render_field_radio' ),
 		) );
 		jetpack_register_block( 'field-select', array(
+			'parent'          => array( 'jetpack/contact-form' ),
 			'render_callback' => array( __CLASS__, 'gutenblock_render_field_select' ),
 		) );
 	}
@@ -617,6 +630,29 @@ class Grunion_Contact_Form_Plugin {
 		$GLOBALS['shortcode_tags']                             = $old;
 
 		return $text;
+	}
+	
+	/**
+	 * Check if a submission matches the Comment Blacklist.
+	 * The Comment Blacklist is a means to moderate discussion, and contact
+	 * forms are 1:1 discussion forums, ripe for abuse by users who are being
+	 * removed from the public discussion.
+	 * Attached to `jetpack_contact_form_is_spam`
+	 *
+	 * @param bool  $is_spam
+	 * @param array $form
+	 * @return bool TRUE => spam, FALSE => not spam
+	 */
+	function is_spam_blacklist( $is_spam, $form = array() ) {
+		if ( $is_spam ) {
+			return $is_spam;
+		}
+		
+		if ( wp_blacklist_check( $form['comment_author'], $form['comment_author_email'], $form['comment_author_url'], $form['comment_content'], $form['user_ip'], $form['user_agent'] ) ) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	/**
@@ -1992,6 +2028,11 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 			$r .= $form->body;
 			$r .= "\t<p class='contact-submit'>\n";
 
+			$gutenberg_submit_button_classes = '';
+			if ( ! empty( $attributes['submitButtonClasses'] ) ) {
+				$gutenberg_submit_button_classes = ' ' . $attributes['submitButtonClasses'];
+			}
+
 			/**
 			 * Filter the contact form submit button class attribute.
 			 *
@@ -2001,9 +2042,27 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 			 *
 			 * @param string $class Additional CSS classes for button attribute.
 			 */
-			$submit_button_class = apply_filters( 'jetpack_contact_form_submit_button_class', 'pushbutton-wide' );
+			$submit_button_class = apply_filters( 'jetpack_contact_form_submit_button_class', 'pushbutton-wide' . $gutenberg_submit_button_classes );
 
-			$r .= "\t\t<input type='submit' value='" . esc_attr( $form->get_attribute( 'submit_button_text' ) ) . "' class='" . $submit_button_class . "'/>\n";
+			$submit_button_styles = '';
+			if ( ! empty( $attributes['customBackgroundButtonColor'] ) ) {
+				$submit_button_styles .= 'background-color: ' . $attributes['customBackgroundButtonColor'] . '; ';
+			}
+			if ( ! empty( $attributes['customTextButtonColor'] ) ) {
+				$submit_button_styles .= 'color: ' . $attributes['customTextButtonColor'] . ';';
+			}
+			if ( ! empty( $attributes['submitButtonText'] ) ) {
+				$submit_button_text = $attributes['submitButtonText'];
+			} else {
+				$submit_button_text = $form->get_attribute( 'submit_button_text' );
+			}
+
+			$r .= "\t\t<input type='submit' value='" . esc_attr( $submit_button_text ) . "' class='" . esc_attr( $submit_button_class ) . "'";
+			if ( ! empty( $submit_button_styles ) ) {
+				$r .= " style='" . esc_attr( $submit_button_styles ) . "'";
+			}
+			$r .= "/>\n";
+			
 			if ( is_user_logged_in() ) {
 				$r .= "\t\t" . wp_nonce_field( 'contact-form_' . $id, '_wpnonce', true, false ) . "\n"; // nonce and referer
 			}

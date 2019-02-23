@@ -8,7 +8,11 @@
 </head>
 <body <?php body_class(); ?>>
 
-<?php couponis_activate_account(); ?>
+<?php 
+if( function_exists('couponis_activate_account') ){
+	couponis_activate_account();	
+}
+?>
 
 <!-- ==================================================================================================================================
 TOP BAR
@@ -38,7 +42,7 @@ TOP BAR
 						<a href="javascript:;" class="submit-form"><?php esc_html_e( 'Search', 'couponis' ) ?></a>
 					</form>
 				</div>
-			<?php endif; ?>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>
@@ -115,7 +119,7 @@ TOP BAR
 								</li>';
 							}
 
-							echo  $special_actions;
+							echo wp_kses_post( $special_actions );
 							?>
 						</ul>
 					</div>
@@ -126,8 +130,4 @@ TOP BAR
 		</div>
 	</div>
 </header>
-<?php
-if( is_front_page() || is_tax('coupon-store') || is_tax('coupon-category') || is_single() || ( is_page() && get_page_template_slug() == 'page-tpl_home.php' ) ){
-	include( get_theme_file_path( 'includes/advertise.php' ) );
-}
-?>
+<?php do_action( 'couponis_advertise_print' ); ?>

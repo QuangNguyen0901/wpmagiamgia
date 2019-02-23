@@ -62,16 +62,16 @@
 
 /* BODY */
 body[class*=" "]{
-	font-family: "<?php echo  $text_font ?>", sans-serif;
-	color: <?php echo  $text_color ?>;
-	font-weight: <?php echo  $text_font_weight ?>;
-	font-size: <?php echo  $text_font_size ?>;
-	line-height: <?php echo  $text_font_line_height ?>;
+	font-family: "<?php echo esc_html( $text_font ) ?>", sans-serif;
+	color: <?php echo esc_html( $text_color ) ?>;
+	font-weight: <?php echo esc_html( $text_font_weight ) ?>;
+	font-size: <?php echo esc_html( $text_font_size ) ?>;
+	line-height: <?php echo esc_html( $text_font_line_height ) ?>;
 }
 
 
 a, a:visited{
-	color: <?php echo  $link_color ?>;
+	color: <?php echo esc_html( $link_color ) ?>;
 }
 
 
@@ -126,7 +126,7 @@ body .kc_tabs_nav > .ui-tabs-active > a:hover,
 .ui-widget-header .ui-state-focus .ui-icon:before,
 .ui-datepicker-next .ui-icon:hover:before
 {
-	color: <?php echo  $main_color ?>;
+	color: <?php echo esc_html( $main_color ) ?>;
 }
 
 .widget-title:after,
@@ -139,7 +139,7 @@ a.search-type.type-added,
 .coupon-image:hover,
 .owl-dot.active
 {
-	border-color: <?php echo  $main_color ?>;
+	border-color: <?php echo esc_html( $main_color ) ?>;
 }
 
 .styled-checkbox.active label:after,
@@ -165,117 +165,117 @@ a.visit-store,
 .ui-widget-content.ui-slider-horizontal .ui-state-active,
 .ui-datepicker .ui-datepicker-buttonpane button:hover
 {
-	background-color: <?php echo  $main_color ?>;
-	color: <?php echo  $main_color_font ?>;
+	background-color: <?php echo esc_html( $main_color ) ?>;
+	color: <?php echo esc_html( $main_color_font ) ?>;
 }
 
 .online-sale{
-	background-color: <?php echo  $sale_badge_bg ?>;
-	color: <?php echo  $sale_badge_font ?>;
+	background-color: <?php echo esc_html( $sale_badge_bg ) ?>;
+	color: <?php echo esc_html( $sale_badge_font ) ?>;
 }
 
 .exclusive{
-	background-color: <?php echo  $exclusive_badge_bg ?>;
-	color: <?php echo  $exclusive_badge_font ?>;
+	background-color: <?php echo esc_html( $exclusive_badge_bg ) ?>;
+	color: <?php echo esc_html( $exclusive_badge_font ) ?>;
 }
 
 .online-code{
-	background-color: <?php echo  $online_badge_bg ?>;
-	color: <?php echo  $online_badge_font ?>;
+	background-color: <?php echo esc_html( $online_badge_bg ) ?>;
+	color: <?php echo esc_html( $online_badge_font ) ?>;
 }
 
 .in-store-code{
-	background-color: <?php echo  $in_store_badge_bg ?>;
-	color: <?php echo  $in_store_badge_font ?>;
+	background-color: <?php echo esc_html( $in_store_badge_bg ) ?>;
+	color: <?php echo esc_html( $in_store_badge_font ) ?>;
 }
 
 .coupon-code-modal,
 .coupon-action-button.header-alike{
-	border-color: <?php echo  $action_btn_bg ?>;
+	border-color: <?php echo esc_html( $action_btn_bg ) ?>;
 }
 
 .code-text,
 .code-text-full,
 a.coupon-code-modal, a.coupon-code-modal:visited, a.coupon-code-modal:hover, a.coupon-code-modal:focus, a.coupon-code-modal:focus:active,
 .similar-badge{
-	background-color: <?php echo  $action_btn_bg ?>;
-	color: <?php echo  $action_btn_font ?>;
+	background-color: <?php echo esc_html( $action_btn_bg ) ?>;
+	color: <?php echo esc_html( $action_btn_font ) ?>;
 }
 
 .top-header{
-	background-color: <?php echo  $header_bg_color ?>;
+	background-color: <?php echo esc_html( $header_bg_color ) ?>;
 }
 
 .header-categories a{
-	color: <?php echo  $header_font_color ?>;
+	color: <?php echo esc_html( $header_font_color ) ?>;
 }
 
 .header-categories a:hover{
-	color: <?php echo  $header_font_color_active ?>;
+	color: <?php echo esc_html( $header_font_color_active ) ?>;
 }
 
 .main-search input, .main-search input:focus, .main-search input:active, .main-search input:focus:active{
-	background: <?php echo  $header_input_background; ?>;
+	background: <?php echo esc_html( $header_input_background  ); ?>;
 }
 
 .navbar-default .navbar-nav .open .dropdown-menu > li > a,
 .navbar-default .navbar-nav li a{
-	font-size: <?php echo  $navigation_font_size ?>;
-	font-weight: <?php echo  $navigation_font_weight ?>;
-	font-family: '<?php echo  $navigation_font ?>', sans-serif;
+	font-size: <?php echo esc_html( $navigation_font_size ) ?>;
+	font-weight: <?php echo esc_html( $navigation_font_weight ) ?>;
+	font-family: '<?php echo esc_html( $navigation_font ) ?>', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6{
-	color: <?php echo  $title_color ?>;
+	color: <?php echo esc_html( $title_color ) ?>;
 }
 
 h1, h2, h3, h4, h5, h6, .header-alike, .continue-read{
-	font-weight: <?php echo  $title_font_weight ?>;
-	font-family: '<?php echo  $title_font ?>', sans-serif;	
+	font-weight: <?php echo esc_html( $title_font_weight ) ?>;
+	font-family: '<?php echo esc_html( $title_font ) ?>', sans-serif;	
 }
 
 .continue-read{
-	font-weight: <?php echo  $navigation_font_weight ?>;
+	font-weight: <?php echo esc_html( $navigation_font_weight ) ?>;
 }
 
 h1{
-	font-size: <?php echo  $h1_font_size ?>;
-	line-height: <?php echo  $h1_font_line_height ?>;
+	font-size: <?php echo esc_html( $h1_font_size ) ?>;
+	line-height: <?php echo esc_html( $h1_font_line_height ) ?>;
 }
 
 h2{
-	font-size: <?php echo  $h2_font_size ?>;
-	line-height: <?php echo  $h2_font_line_height ?>;
+	font-size: <?php echo esc_html( $h2_font_size ) ?>;
+	line-height: <?php echo esc_html( $h2_font_line_height ) ?>;
 }
 
 h3{
-	font-size: <?php echo  $h3_font_size ?>;
-	line-height: <?php echo  $h3_font_line_height ?>;
+	font-size: <?php echo esc_html( $h3_font_size ) ?>;
+	line-height: <?php echo esc_html( $h3_font_line_height ) ?>;
 }
 
 h4{
-	font-size: <?php echo  $h4_font_size ?>;
-	line-height: <?php echo  $h4_font_line_height ?>;
+	font-size: <?php echo esc_html( $h4_font_size ) ?>;
+	line-height: <?php echo esc_html( $h4_font_line_height ) ?>;
 }
 
 h5{
-	font-size: <?php echo  $h5_font_size ?>;
-	line-height: <?php echo  $h5_font_line_height ?>;
+	font-size: <?php echo esc_html( $h5_font_size ) ?>;
+	line-height: <?php echo esc_html( $h5_font_line_height ) ?>;
 }
 
 h6{
-	font-size: <?php echo  $h6_font_size ?>;
-	line-height: <?php echo  $h6_font_line_height ?>;
+	font-size: <?php echo esc_html( $h6_font_size ) ?>;
+	line-height: <?php echo esc_html( $h6_font_line_height ) ?>;
 }
 
 .copyrights a,
 .copyrights{
-	color: <?php echo  $copyrights_font_color ?>;
-	background: <?php echo  $copyrights_bg_color ?>;
+	color: <?php echo esc_html( $copyrights_font_color ) ?>;
+	background: <?php echo esc_html( $copyrights_bg_color ) ?>;
 }
 
 .copyrights a:hover{
-	color: <?php echo  $copyrights_font_color_active ?>;
+	color: <?php echo esc_html( $copyrights_font_color_active ) ?>;
 }
 
-<?php echo  $custom_css; ?>
+<?php echo wp_strip_all_tags( $custom_css ); ?>

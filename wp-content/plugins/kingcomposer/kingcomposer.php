@@ -3,7 +3,7 @@
 Plugin Name: KingComposer
 Plugin URI: https://kingcomposer.com/
 Description: KingComposer is the most professional WordPress page builder plugin, it's lightweight and high efficiency to help you build any layout design quickly.
-Version: 2.7.7
+Version: 2.7.8
 Author: King-Theme
 Author URI: http://king-theme.com/
 Text Domain: kingcomposer
@@ -488,7 +488,7 @@ class KingComposer{
 			if (!in_array($name, $type_support))
 				array_push ($type_support, $name);
 		}
-
+		
 		?>
 		<script type="text/javascript">
 			var kc_param_types_support = <?php echo json_encode($type_support); ?>

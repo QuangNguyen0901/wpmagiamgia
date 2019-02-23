@@ -1130,7 +1130,7 @@ function kc_param_type_post_taxonomy(){
 		foreach( $args as $type => $arg ){
 
 			echo '<option class="'.esc_attr($type).'-st" value="'.esc_attr($type).'" style="display:none;">'.esc_html($type).'</option>';
-
+			$arg = array_splice($arg,0,100);
 			foreach( $arg as $k => $v ){
 
 				$k = $type.':'.str_replace( ':', '&#58;', $k );

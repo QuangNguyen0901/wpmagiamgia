@@ -6,7 +6,7 @@ Author URI: http://themeforest.net/user/spoonthemes
 License: GPL 2.0
 License URI: license.txt
 Description:  Affiliate & Submitting Coupons WordPress Theme
-Version: 2.9
+Version: 3.1
 Tags: grid-layout
 Text Domain: couponis
 */
@@ -440,7 +440,8 @@ table td{
 .form-submit a,
 .pagination a,
 .pagination > span,
-.tagcloud a, .btn, a.btn{
+.tagcloud a, .btn, a.btn,
+.post-password-form input[type="submit"]{
 	padding: 10px 20px;
 	border-radius: 2px;
 	background: transparent;
@@ -454,6 +455,13 @@ table td{
 	letter-spacing: 0.5px;
 	display: block;
 	border: none;
+}
+
+.post-password-form input[type="submit"]{
+	font-weight: 700;
+	display: inline-block;
+	line-height: 35px;
+	padding: 0px 20px;
 }
 
 .footer_widget_section .tagcloud a, 
@@ -542,6 +550,7 @@ article{
 
 .blog-item-title{
 	margin: 0px;
+	word-wrap: break-word;
 }
 
 .blog-item-meta{
@@ -1243,6 +1252,7 @@ input,textarea{
 	margin-bottom: 15px;
 }
 
+input[id^="pwbox-1168"],
 .form-control, .form-control:focus, .form-control:active, .form-control:focus:active{
 	border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -1259,6 +1269,10 @@ input,textarea{
 	color: #505050;	
 	min-height: 35px;
 	background-clip: padding-box;
+}
+
+input[id^="pwbox-1168"]{
+	margin-left: 5px;
 }
 
 input[type="file"].form-control,

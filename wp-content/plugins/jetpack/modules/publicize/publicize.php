@@ -40,7 +40,7 @@ abstract class Publicize_Base {
 	 * All users with this cap can un-globalize all other global connections, and globalize any of their own
 	 * Globalized connections cannot be unselected by users without this capability when publishing
 	 */
-	public $GLOBAL_CAP = 'edit_others_posts';
+	public $GLOBAL_CAP = 'publish_posts';
 
 	/**
 	* Sets up the basics of Publicize
@@ -119,7 +119,7 @@ abstract class Publicize_Base {
 
 		add_action( 'init', array( $this, 'add_post_type_support' ) );
 		add_action( 'init', array( $this, 'register_post_meta' ), 20 );
-		add_action( 'init', array( $this, 'register_gutenberg_extension' ), 30 );
+		add_action( 'jetpack_register_gutenberg_extensions', array( $this, 'register_gutenberg_extension' ) );
 	}
 
 /*
@@ -139,6 +139,10 @@ abstract class Publicize_Base {
 	 * @return array
 	 */
 	abstract function get_services( $filter = 'all', $_blog_id = false, $_user_id = false );
+
+	function can_connect_service( $service_name ) {
+		return 'google_plus' !== $service_name;
+	}
 
 	/**
 	 * Does the given user have a connection to the service on the given blog?
@@ -498,7 +502,7 @@ abstract class Publicize_Base {
 					if ( ! $this->is_valid_facebook_connection( $connection ) ) {
 						$connection_test_passed = false;
 						$user_can_refresh = false;
-						$connection_test_message = __( 'Facebook no longer supports Publicize connections to Facebook Profiles, but you can still connect Facebook Pages. Please select a Facebook Page to publish updates to.' );
+						$connection_test_message = __( 'Please select a Facebook Page to publish updates.', 'jetpack' );
 					}
 				}
 
@@ -780,9 +784,15 @@ abstract class Publicize_Base {
 	 * Register the Publicize Gutenberg extension
 	 */
 	function register_gutenberg_extension() {
-		// TODO: Not really a block. The underlying logic doesn't care, so we should rename to
-		// `jetpack_register_gutenberg_extension()` (to account for both Gutenblocks and Gutenplugins).
-		jetpack_register_block( 'publicize' );
+		// TODO: The `gutenberg/available-extensions` endpoint currently doesn't accept a post ID,
+		// so we cannot pass one to `$this->current_user_can_access_publicize_data()`.
+
+		if ( $this->current_user_can_access_publicize_data() ) {
+			jetpack_register_plugin( 'publicize' );
+		} else {
+			jetpack_set_extension_unavailability_reason( 'publicize', 'unauthorized' );
+
+		}
 	}
 
 	/**
